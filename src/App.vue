@@ -131,7 +131,7 @@ function salvarPerfil() {
           </div>
           
           <div class="col-md-2">
-            <label for="ruaField" class="form-label">Rua</label>
+            <label for="ruaField" class="form-label">Rua:</label>
             <input type="text" class="form-control" id="ruaField" v-model="user.rua" />
           </div>
           <div class="col-md-2">
