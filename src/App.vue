@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 
+const title = ref("Your profile");
 const user = ref({
   name: '',
   surname: '',
@@ -47,6 +48,7 @@ const states = [
   { uf: 'TO', name: 'Tocantins' }
 ]
 
+
 const mostrarPerfil = ref(false)
 
 function handleFileUpload(e) {
@@ -65,8 +67,8 @@ function salvarPerfil() {
 
 <template>
   <div class="container">
-    <main>
-      <h1>Editor de Perfil</h1>
+   <form action="" class="form">
+      <h1 class="title">{{ title }}</h1>
       <transition name="form" mode="out-in">
         <section v-if="mostrarPerfil">
           <div class="mt-5 mb-3">
@@ -217,24 +219,176 @@ function salvarPerfil() {
           </div>
         </form>
       </transition>
-    </main>
+    </form>
   </div>
 </template>
 
+
+
 <style scoped>
-.avatar {
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #ddded9;
+}
+
+.title {
+  display: flex;
+  margin: 0px 0px 30px 0px;
+}
+
+h1 {
+  font-family: "Work sans";
+  font-weight: bold;
+}
+
+.form {
+  font-family: "Work sans";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: fit-content;
+  width: 350px;
+  padding: 40px;
+  background-color: rgb(250, 250, 250);
+  border-radius: 30px;
+  margin: 10px 50px 10px 50px;
+  box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.3);
+  /* offset-x, offset-y, blur-radius, spread-radius */
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input {
+  height: 35px;
   width: 200px;
-  height: 200px;
-  border-radius: 50%;
+  border-radius: 10px;
+  border-color: #bab3ab;
+  font-family: "Work sans";
+  margin: 2px 10px 15px 5px;
+  /*Top, right, bottom, left*/
+  padding: 0px 0px 0px 10px;
 }
 
-.form-enter-active,
-.form-leave-active {
-  transition: opacity 0.5s ease;
+label {
+  display: flex;
+  align-self: flex-start;
+  font-family: "Work sans";
+  margin: 0px 0px 0px 13px;
+  font-size: 1rem;
 }
 
-.form-enter-from,
-.form-leave-to {
-  opacity: 0;
+select {
+  width: 120px;
+  height: 30px;
+  border-radius: 5px;
+  font-family: "Work sans";
+  align-self: flex-start;
+  margin: 2px 10px 15px 13px;
+}
+
+.prog {
+  display: flex;
+  flex-direction: row;
+}
+
+#programmingLanguages {
+  width: 148px;
+  align-self: baseline;
+  margin-right: 0;
+}
+
+.add-programming-languages-btn {
+  margin: 2px 10px 0px 2px;
+  width: 50px;
+  height: 38px;
+  border-color: #bab3ab;
+  cursor: pointer;
+  transition: 100ms ease-out;
+}
+
+.add-programming-languages-btn:hover {
+  transform: scale(1.05);
+  transition: 100ms ease-out;
+  border-color: green;
+}
+
+.add-programming-languages-btn:active {
+  transform: scale(1.2);
+  transition: 100ms;
+}
+
+.show-result-bnt {
+  align-self: center;
+  cursor: pointer;
+}
+
+ul {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin: 0px 0px 0px 15px;
+  width: 100%;
+  font-size: 0.9rem;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  list-style: none;
+  font-family: "Work sans";
+  width: 100%;
+  height: 30px;
+  align-self: flex-start;
+}
+
+.del-button {
+  margin: 0 30px;
+  border: 0;
+  height: fit-content;
+  width: fit-content;
+  cursor: pointer;
+  align-self: end;
+  font-size: 1rem;
+  transition: 100ms ease-in-out;
+}
+
+.del-button:hover {
+  transform: scale(1.2);
+  transition: 100ms ease-in-out;
+  color: rgb(160, 0, 0);
+}
+
+textarea {
+  border-radius: 10px;
+  border-color: #bab3ab;
+  font-family: "Work sans";
+  margin: 2px 10px 15px 10px;
+  /*Top, right, bottom, left*/
+  padding: 5px 0px 0px 5px;
+}
+
+#results-form > p {
+  margin: 10px 0 0 0;
+}
+
+.result-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.result-item p {
+  margin-right: .3em;
 }
 </style>
