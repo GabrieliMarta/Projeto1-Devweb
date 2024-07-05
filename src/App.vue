@@ -1,24 +1,23 @@
 <script setup>
 import { ref } from 'vue'
 
-const title = ref("Your profile");
+const title = ref("Seu perfil");
 const user = ref({
-  name: '',
-  surname: '',
+  nome: '',
+  sobrenome: '',
+  data: '',
   email: '',
   senha: '',
   senhaconfirm: '',
-  city: '',
-  state: '',
+  cidade: '',
+  estado: '',
   rua: '',
   bairro:'',
-  zip: '',
-  avatar: '',
   hobbies: [],
-  preferredLanguage: ''
+  linguagempref: ''
 })
 
-const states = [
+const estados = [
   { uf: 'AC', name: 'Acre' },
   { uf: 'AL', name: 'Alagoas' },
   { uf: 'AP', name: 'Amapá' },
@@ -73,25 +72,27 @@ function salvarPerfil() {
         <section v-if="mostrarPerfil">
           <div>
             <p v-for="(value, key) of user" :key="key">{{ key }}: {{ value }}</p>
-            <img v-if="user.avatar" class="avatar" :src="user.avatar" />
           </div>
           <button class="btn btn-info" @click="mostrarPerfil = false">Esconder</button>
         </section>
         <form v-else class="row g-3 was-validated" @submit.prevent="salvarPerfil()" validate>
           <div>
-            <label for="nameField" class="form-label">Nome</label>
-            <input type="text" class="form-control" id="nameField" v-model="user.name" required />
+            <label for="nomeField" class="form-label">Nome</label>
+            <input type="text" class="form-control" id="nomeField" v-model="user.nome" required />
           </div>
           <div>
-            <label for="surnameField" class="form-label">Sobrenome</label>
+            <label for="sobrenomeField" class="form-label">Sobrenome</label>
             <input
               type="text"
               class="form-control"
-              id="surnameField"
-              v-model="user.surname"
+              id="sobrenomeField"
+              v-model="user.sobrenome"
               required
             />
           </div>
+          <div>
+            <label for="dataField" class="form-label">Data</label>
+            <input type="datetime-local" class="form-control" id="dataField" v-model="user.data" required ></div>
           <div>
             <label for="emailField" class="form-label">E-mail @</label>
             <div class="input-group">
@@ -115,15 +116,15 @@ function salvarPerfil() {
             <input type="text" class="form-control" id="senhaconfirmField" v-model="user.senhaconfirm" />
           </div>
           <div>
-            <label for="cityField" class="form-label">Cidade</label>
-            <input type="text" class="form-control" id="cityField" v-model="user.city" />
+            <label for="cidadeField" class="form-label">Cidade</label>
+            <input type="text" class="form-control" id="cidadeField" v-model="user.cidade" />
           </div>
           <div>
-            <label for="stateField" class="form-label">Estado</label>
-            <select class="form-select" id="stateField" v-model="user.state">
+            <label for="estadoField" class="form-label">Estado</label>
+            <select class="form-select" id="estadoField" v-model="user.estado">
               <option selected disabled value="">Selecionar...</option>
-              <option v-for="state of states" :key="state.uf" :value="state.uf">
-                {{ state.name }}
+              <option v-for="estado of estados" :key="estado.uf" :value="estado.uf">
+                {{ estado.name }}
               </option>
             </select>
           </div>
@@ -142,71 +143,59 @@ function salvarPerfil() {
           </div>
           <div >
             <p>Hobbies</p>
-            <input
+            <div class="row-selection"><label for="hobbiesField">Esportes</label><input
               type="checkbox"
               id="hobbiesField"
               value="esportes"
               v-model="user.hobbies"
-            />
-            <label for="hobbiesField">Esportes</label>
-            <input
+            /></div>
+            <div class="row-selection"><label for="hobbiesField">Música</label><input
               type="checkbox"
               id="hobbiesField"
               value="música"
               v-model="user.hobbies"
-            />
-            <label for="hobbiesField">Música</label>
-            <input
+            /></div>
+            <div class="row-selection"><label for="hobbiesField">Viagens</label><input
               type="checkbox"
               id="hobbiesField"
               value="viagens"
               v-model="user.hobbies"
             />
-            <label for="hobbiesField">Viagens</label>
-            <input
+            </div>
+            <div class="row-selection"><label for="hobbiesField">Leitura</label><input
               type="checkbox"
               id="hobbiesField"
               value="leitura"
               v-model="user.hobbies"
-            />
-            <label for="hobbiesField">Leitura</label>
-            <input
-              type="checkbox"
-              id="hobbiesField"
-              value="leitura"
-              v-model="user.hobbies"
-            />
+            /></div>
           </div>
           <div >
             <p>Linguagem preferida</p>
-            <input
+            <div class="row-selection"><label for="langC">C</label><input
               type="radio"
-              v-model="user.preferredLanguage"
+              v-model="user.linguagempref"
               value="C"
               id="langC"
-            />
-            <label for="langC">C</label>
-            <input
+            /></div>
+            <div class="row-selection"><label for="langJava">Java</label><input
               type="radio"
-              v-model="user.preferredLanguage"
+              v-model="user.linguagempref"
               value="Java"
               id="langJava"
-            />
-            <label for="langJava">Java</label>
-            <input
+            /></div>
+            <div class="row-selection"><label for="langPython">Python</label><input
               type="radio"
-              v-model="user.preferredLanguage"
+              v-model="user.linguagempref"
               value="Python"
               id="langPython"
-            />
-            <label for="langPython">Python</label>
-            <input
+            /></div>
+            <div class="row-selection">
+              <label for="langJs">JavaScript</label><input
               type="radio"
-              v-model="user.preferredLanguage"
+              v-model="user.linguagempref"
               value="Javascript"
               id="langJs"
-            />
-            <label for="langJs">JavaScript</label>
+            /></div>
           </div>
           <div>
             <button  type="submit">Enviar</button>
@@ -222,27 +211,19 @@ function salvarPerfil() {
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 
-.grid {
-    display: grid;
-    grid-template-columns: 3% 1fr;
-    grid-template-rows: 10vh 80vh 10vh;
-    grid-template-areas: "h h"
-        "m m"
-        "f f";
-}
-
 .container {
   height: auto;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-image: url("src/fundo.avif");
-  background-size: 100%;
+  background-image: url("/fundo.avif");
+  background-repeat: no-repeat ;
+  background-size: cover;
 }
 
 .title {
-  display: flex;
+  text-align: center;
   margin: 0px 0px 30px 0px;
 }
 
@@ -279,11 +260,6 @@ form {
   grid-template-areas: "main";
 }
 
-.inputs {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
 input {
   height: 35px;
@@ -409,5 +385,13 @@ textarea {
 }
 .result-item p {
   margin-right: .3em;
+}
+.row-selection{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.row-selection > label{
+  width: 20%;
 }
 </style>
